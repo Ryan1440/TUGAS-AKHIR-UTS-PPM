@@ -1,97 +1,108 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# MatchDay ⚽
 
-# Getting Started
+MatchDay adalah aplikasi mobile cross-platform (iOS/Android) yang dibuat menggunakan React Native dan TypeScript. Aplikasi ini memungkinkan pengguna untuk melacak jadwal pertandingan sepak bola, melihat skor, dan menyimpan pertandingan favorit mereka.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+Proyek ini dilengkapi dengan sistem autentikasi, *dark/light mode* dinamis, dan navigasi tab yang lengkap.
 
-## Step 1: Start Metro
+![Tangkapan Layar Tampilan Home](https://i.imgur.com/39a6jWp.jpeg) ## ✨ Fitur Utama
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+* **Autentikasi Pengguna:** Layar Login sebelum masuk ke aplikasi utama.
+* **Dynamic Theme:** Fitur *dark mode* dan *light mode* yang bisa diganti-ganti dan tersimpan.
+* **Navigasi Tab:** Navigasi utama menggunakan 3 tab: Matches, Favorites, dan Profile.
+* **Daftar Pertandingan:** Menampilkan daftar pertandingan (Live, Upcoming, Finished) dengan *card* berlatar belakang gambar yang dinamis.
+* **Detail Pertandingan:** Layar detail dengan informasi lengkap (stadion, wasit, penonton) dan latar belakang gambar yang *fade* (gradasi).
+* **Sistem Favorit:**
+    * Tambah/Hapus favorit langsung dari *card* di `HomeScreen`.
+    * Tambah/Hapus favorit dari `DetailScreen`.
+    * Semua data favorit tersimpan di `AsyncStorage`.
+* **Layar Favorit:** Menampilkan semua pertandingan favorit dengan panel "Quick Stats" (Live, Upcoming, Finished).
+* **Layar Profil:** Menampilkan info user, *toggle* ganti tema, dan tombol Log Out.
+* **Data API:**
+    * Menggunakan data *dummy* (file `dummyData.ts`) untuk kemudahan development.
+    * Siap dihubungkan ke API (kode `axios` sudah ada, tinggal di-*uncomment*).
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+---
 
-```sh
-# Using npm
-npm start
+## 📱 Tangkapan Layar (Screenshots)
 
-# OR using Yarn
-yarn start
-```
+| Login (Dark) | Home (Dark) | Detail (Dark) |
+| :---: | :---: | :---: |
+| <img src="https://i.imgur.com/8Qh1eUq.png" width="250"> | <img src="https://i.imgur.com/39a6jWp.jpeg" width="250"> | <img src="https://i.imgur.com/O6S3JqE.png" width="250"> |
+| **Login (Light)** | **Favorites (Dark)** | **Profile (Dark)** |
+| <img src="https://i.imgur.com/qL8rA5P.png" width="250"> | <img src="https://i.imgur.com/rM7dY3u.png" width="250"> | <img src="https://i.imgur.com/4A4gJvM.png" width="250"> |
 
-## Step 2: Build and run your app
+---
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+## 🛠️ Teknologi yang Digunakan
 
-### Android
+* **React Native**
+* **TypeScript**
+* **React Navigation (v6):**
+    * Native Stack Navigator (`@react-navigation/native-stack`)
+    * Bottom Tab Navigator (`@react-navigation/bottom-tabs`)
+* **React Context:** Untuk manajemen tema (Dark/Light Mode).
+* **AsyncStorage:** Untuk menyimpan data favorit.
+* **Axios:** Untuk *fetching* data dari API.
+* **react-native-vector-icons:** Untuk semua ikon di dalam aplikasi.
+* **react-native-linear-gradient:** Untuk efek gradasi/pudar di layar detail.
 
-```sh
-# Using npm
-npm run android
+---
 
-# OR using Yarn
-yarn android
-```
+## 🚀 Cara Menjalankan Proyek (Getting Started)
 
-### iOS
+### 1. Prasyarat
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+Pastikan kamu sudah mengatur lingkungan React Native di mesin kamu.
+(Lihat [React Native Environment Setup](https://reactnative.dev/docs/environment-setup))
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+### 2. Instalasi
 
-```sh
-bundle install
-```
+1.  Clone repositori ini:
+    ```bash
+    git clone [https://github.com/NAMA-USER-LO/NAMA-REPO-LO.git](https://github.com/NAMA-USER-LO/NAMA-REPO-LO.git)
+    cd NAMA-REPO-LO
+    ```
 
-Then, and every time you update your native dependencies, run:
+2.  Install semua *dependencies*:
+    ```bash
+    npm install
+    ```
 
-```sh
-bundle exec pod install
-```
+3.  *Linking* (untuk iOS):
+    ```bash
+    cd ios
+    pod install
+    cd ..
+    ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+### 3. Menjalankan Aplikasi
 
-```sh
-# Using npm
-npm run ios
+1.  Jalankan Metro Bundler:
+    ```bash
+    npm start -- --reset-cache
+    ```
 
-# OR using Yarn
-yarn ios
-```
+2.  Buka terminal baru dan jalankan di *device* pilihanmu:
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+    * **Untuk Android:**
+        ```bash
+        npm run android
+        ```
+    * **Untuk iOS:**
+        ```bash
+        npm run ios
+        ```
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+---
 
-## Step 3: Modify your app
+### 📝 Catatan API
 
-Now that you have successfully run the app, let's make changes!
+Saat ini, proyek di-setel untuk menggunakan data *dummy* (dari `src/api/dummyData.ts`) agar bisa langsung dijalankan tanpa API key.
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+Jika kamu ingin beralih ke data API *real* (dari [football-data.org](https://football-data.org/)):
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+1.  Dapatkan API Key gratis dari [football-data.org](https://www.football-data.org/client/register).
+2.  Buka `src/api/footballApi.ts`.
+3.  Masukkan API Key kamu ke variabel `API_KEY`.
+4.  *Comment* bagian *dummy* di fungsi `getTodayMatches` dan `getMatchById`.
+5.  *Uncomment* bagian kode `axios` yang asli di kedua fungsi tersebut.
